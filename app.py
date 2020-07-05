@@ -6,7 +6,7 @@ app.secret_key = '1234'
 
 @app.route('/')
 def test():
-    return render_template("test.html")
+    return render_template("main2.html")
 
 @app.route('/login')
 def login():
@@ -16,7 +16,11 @@ def login():
 def main():
     if 'user' in session:
         return render_template("main.html")
-    return redirect(url_for('login'))
+    return '''
+                <script> alert("로그인 하세요");
+                location.href="/login"
+                </script>
+                '''
 
 @app.route('/method', methods=['GET', 'POST'])
 def method():
@@ -32,7 +36,7 @@ def method():
     else:
         return '''
                 <script> alert("학번 또는 이름을 확인하세요");
-                location.href="/result"
+                location.href="/login"
                 </script>
                 '''
 
